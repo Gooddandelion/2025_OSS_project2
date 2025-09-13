@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>22100324's form1</title>
+</head>
+<body class="bg-light">
+  <div class="inner">
+    <h1 class="logo naver">
+      <a href="https://naver.com" class="link">Naver</a>
+    </h1>
+
+    <div class="content">
+      <!-- 폼 시작 -->
+      <form id="join_form" method="get" action="/user2/join/end" class="form" novalidate>
+        <!-- 서버가 사용하는 hidden 값들 -->
+        <input type="hidden" id="token_sjoin" name="token_sjoin" value="kGSybP2tYlcV3yt0">
+        <input type="hidden" id="nid_kb2" name="nid_kb2" value="">
+        <input type="hidden" id="joinMode" name="joinMode" value="joinIdentity">
+        <input type="hidden" id="encPswd" name="encPswd" value="">
+        <input type="hidden" id="enckey" name="enckey" value="">
+        <input type="hidden" id="telecom" name="telecom" value="">
+        <input type="hidden" id="birthday" name="birthday" value="">
+
+        <div class="form_content">
+          <div class="form_section">
+            <div class="join_toggle" id="divToggle">
+              <input type="checkbox" id="join_toggle" checked />
+              <label for="join_toggle">실명 인증된 아이디로 가입</label>
+            </div>
+
+            <div class="form_list">
+              <!-- 아이디 -->
+              <div class="form_item user" id="divId">
+                <label for="id">아이디</label>
+                <div style="display:flex; gap:6px; align-items:center;">
+                  <input type="text" id="id" name="id" class="input" placeholder="아이디"
+                         maxlength="20" autocapitalize="off" required
+                         pattern="[a-z0-9][a-z0-9._-]{3,19}"/>
+                  <div class="id_naver">@naver.com</div>
+                </div>
+                <div class="error_text item_style" id="idMsg" style="display:none"></div>
+              </div>
+
+              <!-- 비밀번호 -->
+              <div class="form_item password" id="divPassword">
+                <label for="pswd1">비밀번호</label>
+                <input
+                    type="password"
+                    id="pswd1"
+                    name="pswd1"
+                    class="input"
+                    placeholder="비밀번호"
+                    maxlength="20"
+                    autocomplete="new-password"
+                    required
+                    pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}"
+                    title="영문, 숫자, 특수문자를 각각 1자 이상 포함해 8자 이상 입력하세요."
+                />
+                <div class="password_info" style="display:flex; justify-content:space-between; align-items:center;">
+                    <em class="how_secure" id="secureLevel" aria-live="polite"></em>
+                    <button type="button" class="btn_show" id="btnTogglePw">
+                    <span class="blind">비밀번호 보기</span>보기
+                    </button>
+                </div>
+                <div class="error_text item_style" id="pswdMsg" style="display:none"></div>
+              </div>
+
+              <!-- 이메일 -->
+              <div class="form_item email" id="divEmail">
+                <label for="email">[선택] 이메일 주소</label>
+                <input type="email" id="email" name="email"
+                       placeholder="[선택] 이메일주소 (비밀번호 찾기 등 본인 확인용)"
+                       class="input" maxlength="60" />
+                <div class="error_text item_style" id="emailMsg" style="display:none"></div>
+              </div>
+            </div>
+
+            <div class="form_list">
+              <!-- 이름 -->
+              <div class="form_item user" id="divName">
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name" placeholder="이름" class="input" maxlength="40" required />
+              </div>
+
+              <!-- 생년월일 -->
+              <div class="form_item calendar" id="divBirthday">
+                <label for="birthdayInput">생년월일</label>
+                <input type="date" id="birthdayInput" class="input" required />
+              </div>
+
+              <!-- 통신사 -->
+              <div class="form_item telecom" id="divTelecom">
+                <label for="telecomSelect">통신사</label>
+                <select id="telecomSelect" class="input" required>
+                  <option value="">통신사 선택</option>
+                  <option value="SKT">SKT</option>
+                  <option value="SKT_MVNO">SKT 알뜰폰</option>
+                  <option value="KT">KT</option>
+                  <option value="KT_MVNO">KT 알뜰폰</option>
+                  <option value="LGU">LG U+</option>
+                  <option value="LGU_MVNO">LG U+ 알뜰폰</option>
+                </select>
+              </div>
+
+              <!-- 성별 -->
+              <div class="form_item adult" id="divIdentityGender">
+                <fieldset style="border:0; padding:0; margin:0;">
+                  <legend>성별</legend>
+                  <ul class="adult_list" id="listIdentityGender1" style="list-style:none; padding:0; display:flex; gap:12px;">
+                    <li class="radio item">
+                      <input type="radio" id="identityGender1" name="identityGender" value="M" required />
+                      <label for="identityGender1">남자</label>
+                    </li>
+                    <li class="radio item">
+                      <input type="radio" id="identityGender2" name="identityGender" value="F" />
+                      <label for="identityGender2">여자</label>
+                    </li>
+                  </ul>
+                </fieldset>
+              </div>
+
+              <!-- 내/외국인 -->
+              <div class="form_item nationality" id="divNationality">
+                <fieldset style="border:0; padding:0; margin:0;">
+                  <legend>내/외국인</legend>
+                  <ul class="adult_list" id="listIdentityGender2" style="list-style:none; padding:0; display:flex; gap:12px;">
+                    <li class="radio item">
+                      <input type="radio" id="foreigner1" name="foreigner" value="K" required />
+                      <label for="foreigner1">내국인</label>
+                    </li>
+                    <li class="radio item">
+                      <input type="radio" id="foreigner2" name="foreigner" value="F" />
+                      <label for="foreigner2">외국인</label>
+                    </li>
+                  </ul>
+                </fieldset>
+              </div>
+            </div>
+
+            <div class="form_list" id="divPhoneNoOuter">
+              <!-- 휴대전화 -->
+              <div class="form_item phone" id="divPhoneNo">
+                <label for="phoneNo">휴대전화번호</label>
+                <input type="tel" id="phoneNo" name="phoneNo" class="input" placeholder="예: 01012345678"
+                       maxlength="16" inputmode="numeric" pattern="^01[0-9]{8,9}$" required />
+              </div>
+
+              <!-- 자기소개 (textarea) -->
+              <div class="form_item intro" id="divIntro">
+                <label for="intro">자기소개</label>
+                <textarea id="intro" name="intro" class="input" rows="4" placeholder="간단한 자기소개를 입력해주세요"></textarea>
+              </div>
+
+              <!-- 학력 (select) -->
+              <div class="form_item edu" id="divEdu">
+                <label for="education">학력</label>
+                <select id="education" name="education" class="input" required>
+                  <option value="">선택하세요</option>
+                  <option value="elementary">초등</option>
+                  <option value="middle">중등</option>
+                  <option value="high">고등</option>
+                  <option value="university">대학</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <button type="submit" class="btn_submit">가입하기</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- 폼 끝 -->
+    </div>
+  </div>
+
+  <script>
+    // 비밀번호 보기/숨기기
+    document.getElementById('btnTogglePw').addEventListener('click', function () {
+      const pw = document.getElementById('pswd1');
+      pw.type = (pw.type === 'password') ? 'text' : 'password';
+      this.textContent = (pw.type === 'password') ? '보기' : '숨기기';
+    });
+
+    // 비밀번호 보안 레벨 간단 표시
+    document.getElementById('pswd1').addEventListener('input', function () {
+      const val = this.value;
+      const level = document.getElementById('secureLevel');
+      let score = 0;
+      if (val.length >= 8) score++;
+      if (/[A-Z]/.test(val)) score++;
+      if (/[a-z]/.test(val)) score++;
+      if (/\d/.test(val)) score++;
+      if (/[^A-Za-z0-9]/.test(val)) score++;
+
+      const text = ['약함', '보통', '좋음', '강함', '매우 강함'];
+      level.textContent = text[Math.min(score-1, text.length-1)] || '';
+    });
+
+    // 생년월일/통신사 hidden과 동기화
+    const birthdayInput = document.getElementById('birthdayInput');
+    const birthdayHidden = document.getElementById('birthday');
+    birthdayInput.addEventListener('change', () => {
+      birthdayHidden.value = birthdayInput.value; // yyyy-mm-dd
+    });
+
+    const telecomSelect = document.getElementById('telecomSelect');
+    const telecomHidden = document.getElementById('telecom');
+    telecomSelect.addEventListener('change', () => {
+      telecomHidden.value = telecomSelect.value;
+    });
+
+    // 전송 전 기본 검증 + hidden 보정
+    document.getElementById('join_form').addEventListener('submit', function (e) {
+      // hidden 동기화 누락 방지
+      birthdayHidden.value = birthdayInput.value;
+      telecomHidden.value = telecomSelect.value;
+
+      if (!this.checkValidity()) {
+        e.preventDefault();
+        alert('필수 항목을 확인해 주세요.');
+      }
+    });
+  </script>
+</body>
+</html>
